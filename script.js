@@ -221,8 +221,9 @@ This quote request was submitted via the A-man Transportation website.
             
             if (emailJSReady) {
                 console.log('Sending via EmailJS...');
-                // EmailJS is configured - send directly
-                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
+                
+                // Build the template parameters
+                const templateParams = {
                     to_email: companyEmail,
                     from_name: data.name,
                     from_email: data.email,
@@ -238,7 +239,15 @@ This quote request was submitted via the A-man Transportation website.
                     details: data.details || 'None provided',
                     subject: subject,
                     message: emailBody
-                }).then(function(response) {
+                };
+                
+                // Debug: Log what we're sending
+                console.log('Template params being sent:', templateParams);
+                console.log('Pickup city:', templateParams.pickup_city);
+                console.log('Delivery city:', templateParams.delivery_city);
+                
+                // EmailJS is configured - send directly
+                emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, templateParams).then(function(response) {
                     console.log('EmailJS SUCCESS!', response);
                     showNotification('Thank you! Your quote request has been sent. We\'ll contact you within 24 hours.', 'success');
                     
