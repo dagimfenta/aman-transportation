@@ -135,7 +135,7 @@ h3 {
 }
 
 .logo img {
-    height: 60px;
+    height: 95px;
     width: auto;
 }
 
@@ -877,4 +877,5 @@ input[type="date"]::-webkit-calendar-picker-indicator {
         padding: 24px;
     }
 }
+
 
